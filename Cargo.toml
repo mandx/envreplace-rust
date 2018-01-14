@@ -1,0 +1,7 @@
+[package]
+name = "envreplace"
+version = "0.0.1"
+authors = ["Armando Perez <gmandx@gmail.com>"]
+
+[dependencies]
+regex = "0.2.5"
