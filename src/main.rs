@@ -3,17 +3,13 @@ extern crate regex;
 use std::env;
 use std::io::{self, Read, Write};
 
-use regex::{Regex, Captures};
-
+use regex::{Captures, Regex};
 
 fn main() {
     let mut text = String::new();
-    let read_result = io::stdin().read_to_string(&mut text);
-
-    if let Err(error) = read_result {
-        eprintln!("Error reading from stdin: {}", error);
-        return
-    }
+    io::stdin()
+        .read_to_string(&mut text)
+        .expect("Error reading from standard input");
 
     let regex = Regex::new("\\$[\\w_]+").unwrap();
 
@@ -25,8 +21,7 @@ fn main() {
         }
     });
 
-    let write_result = io::stdout().write(replaced.as_bytes());
-    if let Err(error) = write_result {
-        eprintln!("Error writing to stdout: {}", error);
-    }
+    io::stdout()
+        .write_all(replaced.as_bytes())
+        .expect("Error writing to standard output");
 }
