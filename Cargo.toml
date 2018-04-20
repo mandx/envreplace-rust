@@ -4,4 +4,9 @@ version = "0.0.1"
 authors = ["Armando Perez <gmandx@gmail.com>"]
 
 [dependencies]
-regex = "0.2.5"
+regex = "0.2.10"
+
+[profile.release]
+lto = true
+panic = 'abort'
+
