@@ -15,10 +15,7 @@ fn main() {
 
     let replaced = regex.replace_all(&text, |captures: &Captures| {
         let varname = &captures[0];
-        match env::var(&varname[1..]) {
-            Ok(value) => value,
-            _ => String::from(varname),
-        }
+        env::var(&varname[1..]).unwrap_or(String::from(varname))
     });
 
     io::stdout()
